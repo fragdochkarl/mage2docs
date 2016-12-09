@@ -97,49 +97,17 @@ It executes the `.lib-magento-reset()` Mixin, which basically returns a buch of 
 // Resolves to: 
 @import 'source/lib/_lib.less'; // Imports: magento/lib/web/css/source/lib/_lib.less
     @import '_actions-toolbar.less';
-    @import '_breadcrumbs.less';
-    @import '_buttons.less';
-    @import '_dropdowns.less';
-    @import '_forms.less';
-    @import '_grids.less';
-    @import '_icons.less';
-    @import '_layout.less';
-    @import '_loaders.less';
-    @import '_messages.less';
-    @import '_navigation.less';
-    @import '_pages.less';
-    @import '_popups.less';
-    @import '_rating.less';
-    @import '_resets.less';
-    @import '_sections.less';
-    @import '_tables.less';
-    @import '_tooltips.less';
-    @import '_typography.less';
-    @import '_utilities.less';
-    @import '_variables.less';
+    //...
 @import 'source/_sources.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_sources.less
     @import '_variables.less';
     @import (reference) '_extends.less';
-    @import '_typography.less';
-    @import '_layout.less';
-    @import '_tables.less';
-    @import '_messages.less';
-    @import '_navigation.less';
-    @import '_tooltips.less';
-    @import '_loaders.less';
-    @import '_forms.less';
-    @import '_icons.less';
-    @import '_buttons.less';
-    @import '_sections.less';
-    @import '_pages.less'; // Theme pager
-    @import '_actions-toolbar.less';
-    @import '_breadcrumbs.less';
-    @import '_popups.less';
-    @import '_price.less';
+    //...
 @import 'source/_components.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_components.less
     @import 'components/_modals.less'; // Imports from lib: magento/lib/web/css/source/components/_modals.less
     @import 'components/_modals_extend.less'; // Imports from local: magento/vendor/magento/theme-frontend-blank/web/css/source/components/_modals_extend.less
 ```
+(For readability the code listing is shortened. [https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3]See gist with full LESS file here.)
+
 Here it may become even a bit more confusing. First of all the actual base lib is included in line XX.
 
 Then, if you take a look at the actually imported files, you will notice some overriding happen. First the base lib components are imported, followed by the local ones from the blank theme. In addition `_extends.less`is imported as reference.
