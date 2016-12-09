@@ -106,7 +106,7 @@ It executes the `.lib-magento-reset()` Mixin, which basically returns a buch of 
     @import 'components/_modals.less'; // Imports from lib: magento/lib/web/css/source/components/_modals.less
     @import 'components/_modals_extend.less'; // Imports from local: magento/vendor/magento/theme-frontend-blank/web/css/source/components/_modals_extend.less
 ```
-(For readability the code listing is shortened. [See gist with full LESS file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3)
+(For readability the code listing is shortened. [See gist with full LESS file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
 
 Here it may become even a bit more confusing. First of all the actual base lib is included in line XX.
 
