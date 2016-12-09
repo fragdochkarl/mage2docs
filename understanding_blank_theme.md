@@ -53,7 +53,7 @@ If the defined CSS file is not in it's place, Magento will look for a .less file
 
 We always want to compile our LESS to CSS via the proveided grunt tasks, as it is much more perfomant.
 
-While compiling, the Magento fallback system will be respected for requested LESS resources. See [http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-inherit.html] (devdocs) for details.
+While compiling, the Magento fallback system will be respected for requested LESS resources. See [Magento 2 Developer Documentation](http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-inherit.html) for details.
 
 ## Defining the "entry points" in Layout XML ##
 
