@@ -2,7 +2,7 @@
 
 ...or at least trying to!
 
-Working on my first productive Magento 2 project I still struggle with the overly complex design of the new frontend framework. The concepts and structures involved are not neccessarily intuitive (at least to me), so I started strewing some breadcrumbs - hoping them to be of help guiding me (or you) out of the forest.
+Working on my first productive Magento 2 project I still struggle with the overly complex design of the new frontend framework. The concepts and structures involved are not neccessarily intuitive (at least to me), so I started strewing some breadcrumbs - hoping them to be of help guiding me (or you) through the forest.
 
 So here we go...
 
