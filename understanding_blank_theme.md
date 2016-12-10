@@ -190,6 +190,21 @@ Last but not least we get another final opportunity to extend on a module basis 
 
 And thats it: `styles-l.less` works pretty much the same - just ommiting inclusion of base lib and setting desktop scope.
 
-## Conclusion
+Obviously, this can only be the starting point to get productive, but I hope it provides an initial overview of the components pulled into rendering by default in Magento 2 blank theme, thus helping you kickstart your first frontend.
 
-This can only be the starting point to get productive, but I hope this summary gives a better overview of the components pulled into rendering by default in Magento 2, thus helping you kickstart your first frontend.
+## But what would be best practice to a new theme then?
+
+I don't think there is a distinct answer. It totally depends on the project and your personall approach.
+If you decide to use the built in framework - wich I neither recommend nor discourage you to do - then Magento has a couple of key concepts to consider:
+
+- If you inherit from the blank theme, the CSS library can be use instantaneously.
+- For minor adjustments first try find a corresponding variable in `magento/lib/web/css/source/lib/variables` 
+
+### ... start off a new theme?
+
+By now I can imagine a couple of ways. Some of them would be:
+
+- 
+
+
+
