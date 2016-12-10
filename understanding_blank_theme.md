@@ -170,7 +170,7 @@ According to the documentation:
 
 Sounds good to me, but by the actual writing of this essay, I honestly am not yet understanding how it actually works.
 
-So if some of you already figured this one out, just leave a comment here or open an issue/pull request [at my github](https://github.com/fragdochkarl/mage2docs/blob/master/understanding_blank_theme.md) ;)
+So if some of you already figured this one out, just leave a comment here or open an issue/pull request [at my github](https://github.com/fragdochkarl/mage2docs/blob/master/understanding_blank_theme.md).
 
 Next there is a general hook for overriding the themes variables: 
 ```less
