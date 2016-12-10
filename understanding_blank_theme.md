@@ -192,7 +192,7 @@ And thats it: `styles-l.less` works pretty much the same - just ommiting inclusi
 
 Obviously, this can only be the starting point to get productive, but I hope it provides an initial overview of the components pulled into rendering by default in Magento 2 blank theme, thus helping you kickstart your first frontend.
 
-## But what would be best practice to a new theme then?
+## But what would be best practice to build a new theme then?
 
 I don't think there is a distinct answer. It totally depends on the project and your personall approach.
 If you decide to use the built in framework - wich I neither recommend nor discourage you to do - then Magento has a couple of key concepts to consider:
