@@ -198,13 +198,8 @@ I don't think there is a distinct answer. It totally depends on the project and 
 If you decide to use the built in framework - wich I neither recommend nor discourage you to do - then Magento has a couple of key concepts to consider:
 
 - If you inherit from the blank theme, the CSS library can be use instantaneously.
-- For minor adjustments first try find a corresponding variable in `magento/lib/web/css/source/lib/variables` 
-
-### ... start off a new theme?
-
-By now I can imagine a couple of ways. Some of them would be:
-
-- 
-
-
-
+- For minor adjustments first try find a corresponding variable in `magento/lib/web/css/source/lib/variables` and overide them in your themes `web/css/source/_variables.less` file.
+- Every base lib file can be extended by putting an equivalently named file in your `web/css/source/` directory
+- Global variables are meant to be overidden in your themes `web/css/source/_theme.less`
+- In addition you can use the final hook of placing a `web/css/source/_extend.less` file to your theme. Keep in mind though: this is a @magento_import directive iterating over all modules. So you could use this in your cutom module, too.
+- You can extend/overide module related styles by placing an own equivalent `Vendor_Module/web/css/source/_module.less` or `Vendor_Module/web/css/source/_widget.less` file in your theme.
