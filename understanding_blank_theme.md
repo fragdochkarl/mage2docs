@@ -78,41 +78,38 @@ This will be rendered to the following HTML in the pages `<head/>` section:
 
 ## Scaffolding common and mobile styles
 
-In *magento/vendor/magento/theme-frontend-blank/web/css/styles-m.less* a lot of things happen, so we will analyze it step by step. Its structure may be a little confusing, as the sequence of imports and variable assignments is not absolutely intuitive. You have to keep in mind, that, like stated above, in LESS the assignment can happen **before** the actual definition.
+In `magento/vendor/magento/theme-frontend-blank/web/css/styles-m.less` a lot of things happen, so we will analyze it step by step. Its structure may be a little confusing, as the sequence of imports and variable assignments is not absolutely intuitive. One has to follow each `@import` statement and draw a map to get an overview - and keep in mind, that, like stated above, in LESS the assignment can happen **before** the actual definition. [You can find a complete, merged, gist of the file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
 
 
 ```less
 @import 'source/_reset.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_reset.less
 
-// Resolves to:
-& when (@media-common = true) {  // @media-common defined in: magento/lib/web/css/source/lib/_responsive.less
-    .lib-magento-reset(); // defined in: magento/lib/web/css/source/lib/_resets.less
-}
+    // Resolves to:
+    & when (@media-common = true) {  // @media-common defined in: magento/lib/web/css/source/lib/_responsive.less
+        .lib-magento-reset(); // defined in: magento/lib/web/css/source/lib/_resets.less
+    }
 ```
-It executes the `.lib-magento-reset()` Mixin, which basically returns a buch of plain CSS to render at the very beginning. **Notice:** Both the variable and the mixin are defined in the base lib and are not imported yet.
+The above executes the `.lib-magento-reset()` Mixin, which basically returns a buch of plain CSS to render at the very beginning. **Notice:** Both the variable and the mixin are defined in the base lib and are not imported yet.
 
 ```less
 @import '_styles.less'; // Imports magento/vendor/magento/theme-frontend-blank/web/css/_styles.less
 
-// Resolves to: 
-@import 'source/lib/_lib.less'; // Imports: magento/lib/web/css/source/lib/_lib.less
-    @import '_actions-toolbar.less';
-    //...
-@import 'source/_sources.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_sources.less
-    @import '_variables.less';
-    @import (reference) '_extends.less';
-    //...
-@import 'source/_components.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_components.less
-    @import 'components/_modals.less'; // Imports from lib: magento/lib/web/css/source/components/_modals.less
-    @import 'components/_modals_extend.less'; // Imports from local: magento/vendor/magento/theme-frontend-blank/web/css/source/components/_modals_extend.less
+    // Resolves to: 
+    @import 'source/lib/_lib.less'; // Imports: magento/lib/web/css/source/lib/_lib.less
+        @import '_actions-toolbar.less';
+        //...
+    @import 'source/_sources.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_sources.less
+        @import '_variables.less';
+        @import (reference) '_extends.less';
+        //...
+    @import 'source/_components.less'; // Imports: magento/vendor/magento/theme-frontend-blank/web/css/source/_components.less
+        @import 'components/_modals.less'; // Imports from lib: magento/lib/web/css/source/components/_modals.less
+        @import 'components/_modals_extend.less'; // Imports from local: magento/vendor/magento/theme-frontend-blank/web/css/source/components/_modals_extend.less
 ```
-(For readability the code listing is shortened. [See gist with full LESS file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
+(For readability the code listing is shortened. [You can find a complete, merged, gist of the file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
 
-Here it may become even a bit more confusing. First of all the actual base lib is included in line XX.
-
-Then, if you take a look at the actually imported files, you will notice some overriding happen. First the base lib components are imported, followed by the local ones from the blank theme. In addition `_extends.less`is imported as reference.
-
-There seem to be some redundancies as well, considering the following import:
+Here it may become even a bit more confusing. First of all the actual base lib is included as fallback.
+Then most of them are overridden by local files from the blank theme. In addition `_extends.less`is imported as reference, which seems to be some redundant - considering the following import:
 
 ```less
 // styles-m.less; line 18
@@ -122,15 +119,12 @@ According to LESS behaviour, the second `@import`statement would be ignored.
 
 After that, some Magento 2 Magic happens:
 ```less
-
-//
 //  Magento Import instructions
 //  ---------------------------------------------
-
 //@magento_import 'source/_module.less'; // Theme modules
 //@magento_import 'source/_widgets.less'; // Theme widge
 ```
-Magento 2 extends vanilla LESS by its own fallback logic. The `@magento_import` directive has to be commented out with a double slash to not interfere with the default LESS `@import` one. It iterates over all active modules and resolves every pathe for the given file in relation to the current working directory. So the above would render to:
+Magento 2 extends vanilla LESS by its own fallback logic. The `@magento_import` directive has to be commented out with a double slash to not interfere with the default LESS `@import` one. It iterates over all active modules and resolves every path for the given file relative to the current working directory. So the above would render to:
 
 ```less
 @import '../Magento_Catalog/css/source/_module.less';
@@ -145,37 +139,40 @@ If you would place an equivalent file to your own module it would be rendered he
 The next statement...
 
 ```less
-//
+//  styles-m.less
+// ...
 //  Media queries collector
 //  ---------------------------------------------
-
 @import 'source/lib/_responsive.less';
 ```
 
 ...invokes general media queries depending on the `@media-target` scope:
 
 ```less
-//...
+// magento/lib/web/css/source/lib/_responsive.less
+// ...
 & when (@media-target = 'mobile'), (@media-target = 'all') { ... }
 // ...
 & when (@media-target = 'desktop'), (@media-target = 'all') { ... }
 ```
 
 In our case only the first block gets executed, as of the following definition:
+
 ```less
 // styles-m.less
 @media-target: 'mobile'; // Sets target device for this file
 ```
 
-Besides of that, crazy magic things are happening in `source/lib/_responsive.less.`
-What is does is a central, recursive invocation of media queries, thus prevending the rendering of multiple outputs in the resulting CSS files. By the actual writing of this essay, I am not yet understanding how it actually works.
+Besides this, crazy magic things are happening in `magento/lib/web/css/source/lib/_responsive.less`
 
-According to documentation
+According to the documentation:
 > Magento UI library provides a strong approach for working with media queries. It's based on recursive call of .media-width() mixin defined anywhere in project but invoked in one place in lib/web/css/source/lib/_responsive.less. That's why in the resulting styles.css we have every media query only once with all the rules there, not a multiple calls for the same query.
 
-So if some of you already figured this one out, just contact me ;)
+Sounds good to me, but by the actual writing of this essay, I honestly am not yet understanding how it actually works.
 
-After there is a general hook for overriding the themes variables: 
+So if some of you already figured this one out, just leave a comment here or better [at my github]() ;)
+
+Next there is a general hook for overriding the themes variables: 
 ```less
 //  Global variables override
 @import 'source/_theme.less';
@@ -184,14 +181,14 @@ After there is a general hook for overriding the themes variables:
 //  Otherwise this theme won't be available for parent nesting
 //  All new variables should be placed in local theme lib or local theme files
 ```
-The last line gives us another final opportunity to extend on a module basis by using a `_extend.less` file:
+Last but not least we get another final opportunity to extend on a module basis by using a `_extend.less` file:
 
 ```less
 //  Extend for minor customisation
 //@magento_import 'source/_extend.less';
 ```
 
-And thats pretty much it: `styles-l.less` works pretty the same - just ommiting inclusion of base lib and setting desktop scope.
+And thats it: `styles-l.less` works pretty much the same - just ommiting inclusion of base lib and setting desktop scope.
 
 ## Conclusion
 
