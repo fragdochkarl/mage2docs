@@ -21,7 +21,7 @@ So here we go...
 
 ```
 
-#### The last definition of a variable wins:
+#### The last assignment of a variable wins:
 
 ```less
 #selector { attribute: @foo; }
@@ -42,22 +42,22 @@ So here we go...
 
 In its default themes Magento splits CSS into two main CSS files:
 
-1. styles-m.css (Holds common and mobile related definitions)
-2. styles-l.css (Holds desktop related definitions)
+1. styles-m.css (common and mobile related definitions)
+2. styles-l.css (desktop related definitions)
 
-The desktop styles are loaded "on-top" of the mobile ones and will only be effective above a certain breakpoint (defined in Layout XML and rendered in the HTML `<head/>` section.
+The desktop styles are loaded "on top" of the mobile ones and will only be effective above a certain breakpoint (defined in Layout XML and rendered in the HTML `<head/>` section.
 
 ### Quick reminder: Fallback & Code generation in Magento 2
 
-If the defined CSS file is not in it's place, Magento will look for a .less file with the same name and then trigger server side compilation (assuming developer mode is enabled).
+If a requested CSS file is not in it's place, Magento will look for a .less file with the same name and then trigger server side compilation (assuming developer mode is enabled).
 
-We always want to compile our LESS to CSS via the proveided grunt tasks, as it is much more perfomant.
+We always want to compile our LESS to CSS via the provided grunt tasks, as it is much more perfomant.
 
 While compiling, the Magento fallback system will be respected for requested LESS resources. See [Magento 2 Developer Documentation](http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/themes/theme-inherit.html) for details.
 
 ## Defining the "entry points" in Layout XML ##
 
-In **magento/vendor/magento/theme-frontend-blank/Magento_Theme/layout/default_head_blocks.xml** the before mentioned CSS entry points are defined. Notice the media query for `styles-l.css`:
+In `magento/vendor/magento/theme-frontend-blank/Magento_Theme/layout/default_head_blocks.xml` the before mentioned CSS entry points are defined. Notice the media query for `styles-l.css`:
 ```xml
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
