@@ -1,4 +1,4 @@
-# Understanding the blank theme of Magento 2 #
+# Understanding the blank theme of Magento 2
 
 ...or at least trying to!
 
@@ -203,3 +203,5 @@ If you decide to use the built in framework - wich I neither recommend nor disco
 - Global variables are meant to be overidden in your themes `web/css/source/_theme.less`
 - In addition you can use the final hook of placing a `web/css/source/_extend.less` file to your theme. Keep in mind though: this is a @magento_import directive iterating over all modules. So you could use this in your cutom module, too.
 - You can extend/overide module related styles by placing an own equivalent `Vendor_Module/web/css/source/_module.less` or `Vendor_Module/web/css/source/_widget.less` file in your theme.
+
+Further more you could even think of adapting the CSS entry points to your own need, to pull in just the base lib components you really need, for example. I mean, if you wanted to... ;)
