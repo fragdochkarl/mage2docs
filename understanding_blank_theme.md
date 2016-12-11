@@ -78,7 +78,7 @@ This will be rendered to the following HTML in the pages `<head/>` section:
 
 ## Scaffolding common and mobile styles
 
-In `magento/vendor/magento/theme-frontend-blank/web/css/styles-m.less` a lot of things happen, so we will analyze it step by step. Its structure may be a little confusing, as the sequence of imports and variable assignments is not absolutely intuitive. One has to follow each `@import` statement and draw a map to get an overview - and keep in mind, that, like stated above, in LESS the assignment can happen **before** the actual definition. [You can find a complete, merged, gist of the file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
+In `magento/vendor/magento/theme-frontend-blank/web/css/styles-m.less` a lot of things happen, so we will analyze it step by step. Its structure may be a little confusing, as the sequence of imports and variable assignments is not absolutely intuitive. One has to follow each `@import` statement and draw a map to get an overview - and keep in mind, that, like stated above, in LESS the assignment/use of a variable can happen **before** the actual definition. [You can find a complete, merged, gist of the file here.](https://gist.github.com/fragdochkarl/9b07af0bf65aa51cb560d2a4930484f3))
 
 
 ```less
@@ -197,7 +197,7 @@ Obviously, this can only be the starting point to get productive, but I hope it 
 I don't think there is a distinct answer. It totally depends on the project and your personall approach.
 If you decide to use the built in framework - wich I neither recommend nor discourage you to do - then Magento has a couple of key concepts to consider:
 
-- If you inherit from the blank theme, the CSS library can be use instantaneously.
+- If you inherit from the blank theme, the Magento 2 CSS library is imported and can be used instantaneously.
 - For minor adjustments first try find a corresponding variable in `magento/lib/web/css/source/lib/variables` and overide them in your themes `web/css/source/_variables.less` file.
 - Every base lib file can be extended by putting an equivalently named file in your `web/css/source/` directory
 - Global variables are meant to be overidden in your themes `web/css/source/_theme.less`
